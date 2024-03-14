@@ -730,9 +730,11 @@
     var wallColor = [0.555, 0.514, 0.482];
     var roofColor = [0.555, 0.514, 0.482];
     var trimColor = [0.643, 0.525, 0.459];
+    var doorColor = [0.555, 0.514, 0.482];
     var wallColorText = "Desert";
     var roofColorText = "Desert";
     var trimColorText = "Tan";
+    var doorColorText = "Desert";
     var roofTop = null;
     var tempRoofTop = null;
     var roofFB = null;
@@ -951,7 +953,6 @@
             //console.log(dSpace);
             holes.push(dSpace);
         }
-
         const polygon = BABYLON.MeshBuilder.CreatePolygon("polygon", {
             shape: shape,
             holes: holes,
@@ -970,9 +971,9 @@
         polygon1.material = new BABYLON.StandardMaterial("", scene);
         polygon1.material.bumpTexture = new BABYLON.Texture("wall_panel_wide.png", scene);
         polygon1.material.invertNormalMapX = true;
-        polygon1.material.diffuseColor = new BABYLON.Color3(1, 1, 1);
+        polygon1.material.diffuseColor = new BABYLON.Color3(1, 0, 0);
         wallMeshes.push(polygon1);
-
+        console.log(polygon)
         return polygon;
     }
 
@@ -1085,7 +1086,7 @@
                 new BABYLON.Vector3(ds.left + walls[0].corner.x + ds.door.width, 0, ds.door.height),
                 new BABYLON.Vector3(ds.left + walls[0].corner.x + ds.door.width, 0, 0)
             ];
-            //console.log(dSpace);
+            console.log(dSpace);
             holes.push(dSpace);
         }
 
@@ -1094,7 +1095,7 @@
             holes: holes,
             sideOrientation: BABYLON.Mesh.DOUBLESIDE
         });
-
+        console.log(holes)
         polygon.rotation.x = 4.71239;
         polygon.rotation.y = 3.14159;
         polygon.position.z = length;
@@ -2845,7 +2846,7 @@
             function(meshes) {
                 //log the name of the meshes we just imported
                 for (var i = 0; i < meshes.length; i++) {
-                    console.log(meshes[i].name);
+                    // console.log(meshes[i].name);
                     meshes[i].material = new BABYLON.StandardMaterial("", scene);
                     meshes[i].material.diffuseColor = new BABYLON.Color3(1, 0, 0);
                     meshes[i].position.y = height + roofHeight + 0.1;
@@ -2867,14 +2868,14 @@
 
     var placeRidgeCap = function() {
 
-        console.log("Place ridge cap");
+        // console.log("Place ridge cap");
 
         var meshCount = scene.meshes.length;
 
         for (var i = 0; i < meshCount; i++) {
 
             if (scene.meshes[i].name == "rcp_v1") {
-                console.log("Cloning ridge cap");
+                // console.log("Cloning ridge cap");
                 mesh2 = scene.meshes[i].clone("RidgeCap");
 
                 mesh2.material = new BABYLON.StandardMaterial("", scene);
@@ -2898,7 +2899,7 @@
             function(meshes) {
                 //log the name of the meshes we just imported
                 for (var i = 0; i < meshes.length; i++) {
-                    console.log(meshes[i].name);
+                    // console.log(meshes[i].name);
                     meshes[i].material = new BABYLON.StandardMaterial("", scene);
                     meshes[i].material.diffuseColor = new BABYLON.Color3(1, 0, 0);
                     meshes[i].position.y = 5;
@@ -3004,13 +3005,12 @@
             scene,
             function(meshes) {
                 for (var i = 0; i < meshes.length; i++) {
-                    //console.log(meshes[i].name);
-                    //console.log(meshes[i].id);
+                    // console.log(meshes[i].name);
+                    // console.log(meshes[i].id);
                     meshes[i].visibility = 0;
                     meshes[i].scaling = new BABYLON.Vector3(1, 3.35, 3);
                     if (meshes[i].name == "frame_010_Plane.015") {
                         //meshes[i].material.diffuseColor = new BABYLON.Color3(0.95,0.95,0.95);
-                        console.log(trimColor);
                         meshes[i].material.diffuseColor = new BABYLON.Color3(trimColor[0], trimColor[1],
                             trimColor[2]);
                     }
