@@ -179,6 +179,30 @@
                             <option value="170,172,178">Galvalume</option>
                         </select>
                     </p>
+                    <p>
+                        <label style="padding-right: 3px;" for="DoorColor">Select Door Color</label>
+                        <select id="DoorColor" name="DoorColor" value="141,131,123">
+                            <option value="78,78,84">Charcoal</option>
+                            <option selected value="141,131,123">Desert</option>
+                            <option value="164,158,151">Gray</option>
+                            <option value="232,240,237">Polar</option>
+                            <option value="255,255,255">Brilliant</option>
+                            <option value="35,48,49">Fern</option>
+                            <option value="34,68,58">Hunter</option>
+                            <option value="95,113,101">Colony</option>
+                            <option value="147,19,33">Crimson</option>
+                            <option value="100,29,40">Rustic</option>
+                            <option value="54,36,46">Burgundy</option>
+                            <option value="37,61,99">Gallery</option>
+                            <option value="64,98,130">Hawaiian</option>
+                            <option value="214,205,188">Light Stone</option>
+                            <option value="164,134,117">Tan</option>
+                            <option value="67,49,52">Brown</option>
+                            <option value="63,59,58">Burnished Slate</option>
+                            <option value="124,63,45">Copper Metallic</option>
+                            <option value="170,172,178">Galvalume</option>
+                        </select>
+                    </p>
                 </div>
                 <h3>Roof</h3>
                 <div>
@@ -600,30 +624,6 @@
                             <option value="14x10 Roll Up">14x10 Roll Up Door</option>
                             <option value="14x12 Roll Up">14x12 Roll Up Door</option>
                             <option value="14x14 Roll Up">14x14 Roll Up Door</option>
-                        </select>
-                    <p>
-                        <label for="DoorType">Select Door Color</label>
-
-                        <select id="DoorColor" name="DoorColor" value="141,131,123">
-                            <option value="78,78,84">Charcoal</option>
-                            <option selected value="141,131,123">Desert</option>
-                            <option value="164,158,151">Gray</option>
-                            <option value="232,240,237">Polar</option>
-                            <option value="255,255,255">Brilliant</option>
-                            <option value="35,48,49">Fern</option>
-                            <option value="34,68,58">Hunter</option>
-                            <option value="95,113,101">Colony</option>
-                            <option value="147,19,33">Crimson</option>
-                            <option value="100,29,40">Rustic</option>
-                            <option value="54,36,46">Burgundy</option>
-                            <option value="37,61,99">Gallery</option>
-                            <option value="64,98,130">Hawaiian</option>
-                            <option value="214,205,188">Light Stone</option>
-                            <option value="164,134,117">Tan</option>
-                            <option value="67,49,52">Brown</option>
-                            <option value="63,59,58">Burnished Slate</option>
-                            <option value="124,63,45">Copper Metallic</option>
-                            <option value="170,172,178">Galvalume</option>
                         </select>
 
                     <p>
@@ -2497,8 +2497,6 @@
         placeWallTrim(3);
         disposeRidgeCap();
         placeRidgeCap();
-        alert("yyyyyyyy")
-
     }
 
     var buildWallTrim = function() {
@@ -2773,7 +2771,7 @@
         wallTrimMeshNames = ["Part2"];
     }
 
-    var placeWallTrim = function(wall) {
+    var placeWallTrim = function(wall) { //wall edge
         //console.log("Place wall trim");
         var meshCount = scene.meshes.length;
         for (var i = 0; i < meshCount; i++) {
@@ -2783,7 +2781,7 @@
                 //mesh2 = scene.meshes[i].clone(scene.meshes[i].name+i);
                 mesh2 = scene.meshes[i].clone("wallTrim");
                 wallTrimMeshes.push(scene.meshes[i].name + wall)
-
+                mesh2.material = new BABYLON.StandardMaterial("", scene);
                 switch (wall) {
                     case 0: {
                         //mesh2.scaling = new BABYLON.Vector3(0.5, 5.8, 0.5);
@@ -2886,7 +2884,6 @@
                 mesh2.scaling = new BABYLON.Vector3(0.5, 0.5, (length + overlapLRFront + overlapLRBack) * 0.655);
                 mesh2.position.z = 0 - overlapLRFront;
                 mesh2.visibility = 1;
-                alert("aaaaaaaaa")
             }
         }
 
@@ -3013,6 +3010,7 @@
                     meshes[i].scaling = new BABYLON.Vector3(1, 3.35, 3);
                     if (meshes[i].name == "frame_010_Plane.015") {
                         //meshes[i].material.diffuseColor = new BABYLON.Color3(0.95,0.95,0.95);
+                        console.log(trimColor);
                         meshes[i].material.diffuseColor = new BABYLON.Color3(trimColor[0], trimColor[1],
                             trimColor[2]);
                     }
@@ -3034,6 +3032,28 @@
             "closer_frame_010_Plane"
         ];
     };
+
+    // var load3x7DoorModel = function() {
+    //     BABYLON.SceneLoader.ImportMesh(
+    //         "",
+    //         "",
+    //         "3x7Single.obj",
+    //         scene,
+    //         function(meshes) {
+    //             for (var i = 0; i < meshes.length; i++) {
+    //                 if (meshes[i].name === "frame_010_Plane.015") {
+    //                     meshes[i].material.diffuseColor = new BABYLON.Color3(1, 0, 0); // Set to red color
+    //                 }
+    //             }
+    //         }
+    //     );
+    //     door3x7MeshNames = ["frame_010_Plane.015", "floor_plate_010_Cube.002", "door_010_Cylinder.003",
+    //         "handle_010_Cylinder.016",
+    //         "closer_door_010_Cube.006", "closer_hinge_door_010_Cube.007", "closer_hinge_frame_010_Cylinder.010",
+    //         "closer_frame_010_Plane"
+    //     ];
+    // };
+
 
     var load4x7DoorModel = function() {
         BABYLON.SceneLoader.ImportMesh(
@@ -3149,7 +3169,6 @@
     };
 
     var disposeDoorMeshes = function() {
-        alert("eeeefffff")
         if (doorMeshes.length > 0) {
             var meshCount = scene.meshes.length - 1;
             for (var i = meshCount; i >= 0; i--) {
@@ -3161,7 +3180,7 @@
         }
     }
 
-    var place3x7EDoorModel = function(wall, door, doorSpace) {
+    var place3x7EDoorModel = function(wall, door, doorSpace) { // door handle
 
         var meshCount = scene.meshes.length;
         for (var i = 0; i < meshCount; i++) {
