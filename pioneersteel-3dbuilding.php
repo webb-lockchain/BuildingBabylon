@@ -601,74 +601,78 @@
                             <option value="14x12 Roll Up">14x12 Roll Up Door</option>
                             <option value="14x14 Roll Up">14x14 Roll Up Door</option>
                         </select>
+                    <p>
+                        <label for="DoorType">Select Door Color</label>
+
+                        <select id="DoorColor" name="DoorColor" value="141,131,123">
+                            <option value="78,78,84">Charcoal</option>
+                            <option selected value="141,131,123">Desert</option>
+                            <option value="164,158,151">Gray</option>
+                            <option value="232,240,237">Polar</option>
+                            <option value="255,255,255">Brilliant</option>
+                            <option value="35,48,49">Fern</option>
+                            <option value="34,68,58">Hunter</option>
+                            <option value="95,113,101">Colony</option>
+                            <option value="147,19,33">Crimson</option>
+                            <option value="100,29,40">Rustic</option>
+                            <option value="54,36,46">Burgundy</option>
+                            <option value="37,61,99">Gallery</option>
+                            <option value="64,98,130">Hawaiian</option>
+                            <option value="214,205,188">Light Stone</option>
+                            <option value="164,134,117">Tan</option>
+                            <option value="67,49,52">Brown</option>
+                            <option value="63,59,58">Burnished Slate</option>
+                            <option value="124,63,45">Copper Metallic</option>
+                            <option value="170,172,178">Galvalume</option>
+                        </select>
 
                     <p>
                         <label>Front:</label>
                         <button type="button"
-                            onclick="addDoor(0, document.querySelector('#DoorType').value)">Add</button>
+                            onclick="addDoor(0, document.querySelector('#DoorType').value, document.querySelector('#DoorColor').value)">Add</button>
                         <button id="remDoor0" style="visibility: hidden" type="button"
                             onclick="removeDoor(0)">Remove</button>
                         <span id="wDoorArrow0" style="visibility: hidden" class="ui-icon ui-icon-circle-arrow-w"
                             onclick="doorLeft(0)"></span>
-                        <span id="eDoorArrow0" style="visibility: hidden" class="ui-icon ui-icon-circle-arrow-e"
+                        <span id="eDoorArrow0" style="visibility: hidden;" class="ui-icon ui-icon-circle-arrow-e"
                             onclick="doorRight(0)"></span>
-                        <select id="DoorColor0" style="visibility: hidden" name="DoorColor0" value="Red">
-                            <option selected value="Red">Red</option>
-                            <option value="Green">Green</option>
-                            <option value="Black">Black</option>
-                            <option value="Blue">Blue</option>
-                        </select>
+
                     </p>
                     <p>
                         <label>Right:</label>
                         <button type="button"
-                            onclick="addDoor(1, document.querySelector('#DoorType').value)">Add</button>
+                            onclick="addDoor(1, document.querySelector('#DoorType').value, document.querySelector('#DoorColor').value)">Add</button>
                         <button id="remDoor1" style="visibility: hidden" type="button"
                             onclick="removeDoor(1)">Remove</button>
                         <span id="wDoorArrow1" style="visibility: hidden" class="ui-icon ui-icon-circle-arrow-w"
                             onclick="doorLeft(1)"></span>
                         <span id="eDoorArrow1" style="visibility: hidden" class="ui-icon ui-icon-circle-arrow-e"
                             onclick="doorRight(1)"></span>
-                        <select id="DoorColor1" style="visibility: hidden" name="DoorColor1" value="Red">
-                            <option selected value="Red">Red</option>
-                            <option value="Green">Green</option>
-                            <option value="Black">Black</option>
-                            <option value="Blue">Blue</option>
-                        </select>
+
                     </p>
                     <p>
                         <label>Back:</label>
                         <button type="button"
-                            onclick="addDoor(2, document.querySelector('#DoorType').value)">Add</button>
+                            onclick="addDoor(2, document.querySelector('#DoorType').value, document.querySelector('#DoorColor').value, document.querySelector('#DoorColor').value)">Add</button>
                         <button id="remDoor2" style="visibility: hidden" type="button"
                             onclick="removeDoor(2)">Remove</button>
                         <span id="wDoorArrow2" style="visibility: hidden" class="ui-icon ui-icon-circle-arrow-w"
                             onclick="doorLeft(2)"></span>
                         <span id="eDoorArrow2" style="visibility: hidden" class="ui-icon ui-icon-circle-arrow-e"
                             onclick="doorRight(2)"></span>
-                        <select id="DoorColor2" style="visibility: hidden" name="DoorColor2" value="Red">
-                            <option selected value="Red">Red</option>
-                            <option value="Green">Green</option>
-                            <option value="Black">Black</option>
-                            <option value="Blue">Blue</option>
-                        </select>
+
                     </p>
                     <p>
                         <label style="padding-right: 8px;">Left: </label>
                         <button type="button"
-                            onclick="addDoor(3, document.querySelector('#DoorType').value)">Add</button>
+                            onclick="addDoor(3, document.querySelector('#DoorType').value, document.querySelector('#DoorColor').value)">Add</button>
                         <button id="remDoor3" style="visibility: hidden" type="button"
                             onclick="removeDoor(3)">Remove</button>
                         <span id="wDoorArrow3" style="visibility: hidden" class="ui-icon ui-icon-circle-arrow-w"
                             onclick="doorLeft(3)"></span>
                         <span id="eDoorArrow3" style="visibility: hidden" class="ui-icon ui-icon-circle-arrow-e"
                             onclick="doorRight(3)"></span>
-                        <select id="DoorColor3" style="visibility: hidden" name="DoorColor3" value="Red">
-                            <option selected value="Red">Red</option>
-                            <option value="Green">Green</option>
-                            <option value="Black">Black</option>
-                            <option value="Blue">Blue</option>
-                        </select>
+
                     </p>
                 </div>
                 <h3>Finalize</h3>
@@ -852,13 +856,13 @@
         return new BABYLON.Vector3(x, 0, y);
     }
 
-    var door = function(width, height, type) {
-        console.log(this);
-        console.log(this.width);
+    var door = function(width, height, type, color) {
+        console.log(width, height, type, color)
         this.width = width;
         this.height = height;
         this.left = 0;
         this.type = type;
+        this.color = color;
     }
 
     var doorSpace = function(door, left) {
@@ -2280,8 +2284,6 @@
     //***********************************************************************************
 
     var rebuildWalls = function() {
-
-        console.log(wallMeshes);
         for (ii = 0; ii < wallMeshes.length; ii++) {
             wallMeshes[ii].dispose();
         }
@@ -2495,6 +2497,8 @@
         placeWallTrim(3);
         disposeRidgeCap();
         placeRidgeCap();
+        alert("yyyyyyyy")
+
     }
 
     var buildWallTrim = function() {
@@ -2787,7 +2791,6 @@
                         mesh2.position.x = 0 - width / 2 + 0.4;
                         mesh2.position.z = 0 - 0.05;
                         mesh2.rotation.y = 3.14159;
-                        console.log("mesh2:", mesh2);
                         mesh2.material.diffuseColor = new BABYLON.Color3(trimColor[0], trimColor[1], trimColor[2]);
                         mesh2.visibility = 1;
                         break;
@@ -2883,6 +2886,7 @@
                 mesh2.scaling = new BABYLON.Vector3(0.5, 0.5, (length + overlapLRFront + overlapLRBack) * 0.655);
                 mesh2.position.z = 0 - overlapLRFront;
                 mesh2.visibility = 1;
+                alert("aaaaaaaaa")
             }
         }
 
@@ -3145,6 +3149,7 @@
     };
 
     var disposeDoorMeshes = function() {
+        alert("eeeefffff")
         if (doorMeshes.length > 0) {
             var meshCount = scene.meshes.length - 1;
             for (var i = meshCount; i >= 0; i--) {
@@ -3309,6 +3314,7 @@
         var meshCount = scene.meshes.length;
         var mesh2 = null;
         var meshes = [];
+        alert("rrrrrrrrrrrrrrrrrrr")
         for (var i = 0; i < meshCount; i++) {
             if (scene.meshes[i].name == 'garage_door_mechanism_Cube.001' || scene.meshes[i].name ==
                 'garage_door_Cube' || scene.meshes[i].name == "frame_014_Plane.018") {
@@ -4281,99 +4287,76 @@
         }
     };
 
-    var addDoor = function(wall, doorSize) {
-        console.log(wall, doorSize)
+    var addDoor = function(wall, doorSize, doorColor) {
         var dsLeft = 1;
 
         switch (doorSize) {
-            case "3x7 Single Door": {
-                defaultDoor = new door(3.0, 7.0, doorSize);
-            }
-            break;
-        case "4x7 Single Door": {
-            defaultDoor = new door(4.0, 7.0, doorSize);
-        }
-        break;
-        case "6x7 Double Door": {
-            defaultDoor = new door(6.0, 7.0, doorSize);
-        }
-        break;
-        case "8x8 Sectional": {
-            defaultDoor = new door(8.0, 8.0, doorSize);
-        }
-        break;
-        case "8x10 Sectional": {
-            defaultDoor = new door(8.0, 10.0, doorSize);
-        }
-        break;
-        case "10x8 Sectional": {
-            defaultDoor = new door(10.0, 8.0, doorSize);
-        }
-        break;
-        case "10x10 Sectional": {
-            defaultDoor = new door(10.0, 10.0, doorSize);
-        }
-        break;
-        case "12x8 Sectional": {
-            defaultDoor = new door(12.0, 8.0, doorSize);
-        }
-        break;
-        case "8x8 Roll Up": {
-            defaultDoor = new door(8.0, 8.0, doorSize);
-        }
-        break;
-        case "8x10 Roll Up": {
-            defaultDoor = new door(8.0, 10.0, doorSize);
-        }
-        break;
-        case "10x8 Roll Up": {
-            defaultDoor = new door(10.0, 8.0, doorSize);
-        }
-        break;
-        case "10x10 Roll Up": {
-            defaultDoor = new door(10.0, 10.0, doorSize);
-        }
-        break;
-        case "10x12 Roll Up": {
-            defaultDoor = new door(10.0, 12.0, doorSize);
-        }
-        break;
-        case "10x14 Roll Up": {
-            defaultDoor = new door(10.0, 14.0, doorSize);
-        }
-        break;
-        case "12x8 Roll Up": {
-            defaultDoor = new door(12.0, 8.0, doorSize);
-        }
-        break;
-        case "12x10 Roll Up": {
-            defaultDoor = new door(12.0, 10.0, doorSize);
-        }
-        break;
-        case "12x12 Roll Up": {
-            defaultDoor = new door(12.0, 12.0, doorSize);
-        }
-        break;
-        case "12x14 Roll Up": {
-            defaultDoor = new door(12.0, 14.0, doorSize);
-        }
-        break;
-        case "14x8 Roll Up": {
-            defaultDoor = new door(14.0, 8.0, doorSize);
-        }
-        break;
-        case "14x10 Roll Up": {
-            defaultDoor = new door(14.0, 10.0, doorSize);
-        }
-        break;
-        case "14x12 Roll Up": {
-            defaultDoor = new door(14.0, 12.0, doorSize);
-        }
-        break;
-        case "14x14 Roll Up": {
-            defaultDoor = new door(14.0, 14.0, doorSize);
-        }
-        break;
+            case "3x7 Single Door":
+                defaultDoor = new door(3.0, 7.0, doorSize, doorColor);
+                break;
+            case "4x7 Single Door":
+                defaultDoor = new door(4.0, 7.0, doorSize, doorColor);
+                break;
+            case "6x7 Double Door":
+                defaultDoor = new door(6.0, 7.0, doorSize, doorColor);
+                break;
+            case "8x8 Sectional":
+                defaultDoor = new door(8.0, 8.0, doorSize, doorColor);
+                break;
+            case "8x10 Sectional":
+                defaultDoor = new door(8.0, 10.0, doorSize, doorColor);
+                break;
+            case "10x8 Sectional":
+                defaultDoor = new door(10.0, 8.0, doorSize, doorColor);
+                break;
+            case "10x10 Sectional":
+                defaultDoor = new door(10.0, 10.0, doorSize, doorColor);
+                break;
+            case "12x8 Sectional":
+                defaultDoor = new door(12.0, 8.0, doorSize, doorColor);
+                break;
+            case "8x8 Roll Up":
+                defaultDoor = new door(8.0, 8.0, doorSize, doorColor);
+                break;
+            case "8x10 Roll Up":
+                defaultDoor = new door(8.0, 10.0, doorSize, doorColor);
+                break;
+            case "10x8 Roll Up":
+                defaultDoor = new door(10.0, 8.0, doorSize, doorColor);
+                break;
+            case "10x10 Roll Up":
+                defaultDoor = new door(10.0, 10.0, doorSize, doorColor);
+                break;
+            case "10x12 Roll Up":
+                defaultDoor = new door(10.0, 12.0, doorSize, doorColor);
+                break;
+            case "10x14 Roll Up":
+                defaultDoor = new door(10.0, 14.0, doorSize, doorColor);
+                break;
+            case "12x8 Roll Up":
+                defaultDoor = new door(12.0, 8.0, doorSize, doorColor);
+                break;
+            case "12x10 Roll Up":
+                defaultDoor = new door(12.0, 10.0, doorSize, doorColor);
+                break;
+            case "12x12 Roll Up":
+                defaultDoor = new door(12.0, 12.0, doorSize, doorColor);
+                break;
+            case "12x14 Roll Up":
+                defaultDoor = new door(12.0, 14.0, doorSize, doorColor);
+                break;
+            case "14x8 Roll Up":
+                defaultDoor = new door(14.0, 8.0, doorSize, doorColor);
+                break;
+            case "14x10 Roll Up":
+                defaultDoor = new door(14.0, 10.0, doorSize, doorColor);
+                break;
+            case "14x12 Roll Up":
+                defaultDoor = new door(14.0, 12.0, doorSize, doorColor);
+                break;
+            case "14x14 Roll Up":
+                defaultDoor = new door(14.0, 14.0, doorSize, doorColor);
+                break;
         }
 
         if (defaultDoor.height > height - 1) {
@@ -4432,37 +4415,35 @@
                     document.querySelector('#remDoor0').style.visibility = 'visible';
                     document.querySelector('#eDoorArrow0').style.visibility = 'visible';
                     document.querySelector('#wDoorArrow0').style.visibility = 'visible';
-                    document.querySelector('#DoorColor0').style.visibility = 'visible';
                     break;
                 }
                 case 1: {
                     document.querySelector('#remDoor1').style.visibility = 'visible';
                     document.querySelector('#eDoorArrow1').style.visibility = 'visible';
                     document.querySelector('#wDoorArrow1').style.visibility = 'visible';
-                    document.querySelector('#DoorColor1').style.visibility = 'visible';
                     break;
                 }
                 case 2: {
                     document.querySelector('#remDoor2').style.visibility = 'visible';
                     document.querySelector('#eDoorArrow2').style.visibility = 'visible';
                     document.querySelector('#wDoorArrow2').style.visibility = 'visible';
-                    document.querySelector('#DoorColor2').style.visibility = 'visible';
                     break;
                 }
                 case 3: {
                     document.querySelector('#remDoor3').style.visibility = 'visible';
                     document.querySelector('#eDoorArrow3').style.visibility = 'visible';
                     document.querySelector('#wDoorArrow3').style.visibility = 'visible';
-                    document.querySelector('#DoorColor3').style.visibility = 'visible';
                     break;
                 }
             }
         } else {
+            alert("effffffffffffffffff")
             ds0 = doorSpaces[wall][doorSpaces[wall].length - 1];
             d = doors[wall][doors[wall].length - 1];
             dsLeft = ds0.left + d.width + 1;
             ds1 = new doorSpace(defaultDoor, dsLeft);
-            while (checkDoorPosition(wall, ds1, defaultDoor) == false && dsLeft + defaultDoor.width < doorLimit +
+            while (checkDoorPosition(wall, ds1, defaultDoor) == false && dsLeft + defaultDoor.width <
+                doorLimit +
                 1) {
                 dsLeft += 1;
                 ds1 = new doorSpace(defaultDoor, dsLeft);
@@ -4500,6 +4481,7 @@
                 }
             }
         }
+        alert("efgasdfasdf")
         rebuildWalls(house);
     };
 
@@ -4593,7 +4575,8 @@
                     w = defaultWindow;
                     c = new corner(wSpace.left - spacing, height - wSpace.top - w.height - spacing);
                     wCorners.push(c);
-                    c = new corner(wSpace.left + w.width + spacing, height - wSpace.top - w.height - spacing);
+                    c = new corner(wSpace.left + w.width + spacing, height - wSpace.top - w.height -
+                        spacing);
                     wCorners.push(c);
                     c = new corner(wSpace.left + w.width + spacing, height - wSpace.top - spacing);
                     wCorners.push(c);
@@ -4615,7 +4598,8 @@
                                 newCorners[i].x > wCorners[3].x && newCorners[i].z <= wCorners[3].z) {
                                 return false;
                             }
-                        } else if (windowSpace.left == wSpace.left + w.width + spacing || wSpace.left == windowSpace
+                        } else if (windowSpace.left == wSpace.left + w.width + spacing || wSpace.left ==
+                            windowSpace
                             .left + w.width + spacing) {
                             if (newCorners[i].x >= wCorners[0].x && newCorners[i].z > wCorners[0].z &&
                                 newCorners[i].x <= wCorners[1].x && newCorners[i].z > wCorners[1].z &&
@@ -4678,7 +4662,6 @@
                 }
             }
         }
-
         if (windowCount > 0) {
             if (windowSpaces[wall].length > 0) {
                 for (ws = 0; ws < windowCount; ws++) {
@@ -4686,7 +4669,8 @@
                     w = defaultWindow;
                     c = new corner(wSpace.left - spacing, height - wSpace.top - w.height - spacing);
                     wCorners.push(c);
-                    c = new corner(wSpace.left + w.width + spacing, height - wSpace.top - w.height - spacing);
+                    c = new corner(wSpace.left + w.width + spacing, height - wSpace.top - w.height -
+                        spacing);
                     wCorners.push(c);
                     c = new corner(wSpace.left + w.width + spacing, height - wSpace.top - spacing);
                     wCorners.push(c);
@@ -4701,7 +4685,8 @@
                                 newCorners[i].x > wCorners[3].x && newCorners[i].z <= wCorners[3].z) {
                                 return false;
                             }
-                        } else if (windowSpace.left == wSpace.left + w.width + spacing || wSpace.left == windowSpace
+                        } else if (windowSpace.left == wSpace.left + w.width + spacing || wSpace.left ==
+                            windowSpace
                             .left + w.width + spacing) {
                             if (newCorners[i].x >= wCorners[0].x && newCorners[i].z > wCorners[0].z &&
                                 newCorners[i].x <= wCorners[1].x && newCorners[i].z > wCorners[1].z &&
@@ -4738,28 +4723,24 @@
                         document.querySelector('#remDoor0').style.visibility = 'hidden';
                         document.querySelector('#eDoorArrow0').style.visibility = 'hidden';
                         document.querySelector('#wDoorArrow0').style.visibility = 'hidden';
-                        document.querySelector('#DoorColor0').style.visibility = 'hidden';
                         break;
                     }
                     case 1: {
                         document.querySelector('#remDoor1').style.visibility = 'hidden';
                         document.querySelector('#eDoorArrow1').style.visibility = 'hidden';
                         document.querySelector('#wDoorArrow1').style.visibility = 'hidden';
-                        document.querySelector('#DoorColor1').style.visibility = 'hidden';
                         break;
                     }
                     case 2: {
                         document.querySelector('#remDoor2').style.visibility = 'hidden';
                         document.querySelector('#eDoorArrow2').style.visibility = 'hidden';
                         document.querySelector('#wDoorArrow2').style.visibility = 'hidden';
-                        document.querySelector('#DoorColor2').style.visibility = 'hidden';
                         break;
                     }
                     case 3: {
                         document.querySelector('#remDoor3').style.visibility = 'hidden';
                         document.querySelector('#eDoorArrow3').style.visibility = 'hidden';
                         document.querySelector('#wDoorArrow3').style.visibility = 'hidden';
-                        document.querySelector('#DoorColor3').style.visibility = 'hidden';
                         break;
                     }
                 }
@@ -4773,14 +4754,17 @@
             alert("Door cannot be moved further left.");
             return;
         }
-        doorSpaces[wall][doorSpaces[wall].length - 1].left = doorSpaces[wall][doorSpaces[wall].length - 1].left -
+        doorSpaces[wall][doorSpaces[wall].length - 1].left = doorSpaces[wall][doorSpaces[wall].length - 1]
+            .left -
             0.5;
         d = doors[wall][doorSpaces[wall].length - 1];
         ds = doorSpaces[wall][doorSpaces[wall].length - 1];
         if (checkDoorPosition(wall, ds, d, true) == true) {
             rebuildWalls(house);
         } else {
-            doorSpaces[wall][doorSpaces[wall].length - 1].left = doorSpaces[wall][doorSpaces[wall].length - 1]
+            doorSpaces[wall][doorSpaces[wall].length - 1].left = doorSpaces[wall][doorSpaces[wall].length -
+                    1
+                ]
                 .left + 0.5;
             alert("Door cannot be moved further left.");
             return;
@@ -4793,16 +4777,20 @@
         if (wall % 2 == 0 && doorSpaces[wall][doorSpaces[wall].length - 1].left == width - d.width - 1) {
             alert("Door cannot be moved further right.");
             return;
-        } else if (wall % 2 != 0 && doorSpaces[wall][doorSpaces[wall].length - 1].left == length - d.width - 1) {
+        } else if (wall % 2 != 0 && doorSpaces[wall][doorSpaces[wall].length - 1].left == length - d.width -
+            1) {
             alert("Door cannot be moved further right.");
             return;
         }
-        doorSpaces[wall][doorSpaces[wall].length - 1].left = doorSpaces[wall][doorSpaces[wall].length - 1].left +
+        doorSpaces[wall][doorSpaces[wall].length - 1].left = doorSpaces[wall][doorSpaces[wall].length - 1]
+            .left +
             0.5;
         if (checkDoorPosition(wall, ds, d, true) == true) {
             rebuildWalls(house);
         } else {
-            doorSpaces[wall][doorSpaces[wall].length - 1].left = doorSpaces[wall][doorSpaces[wall].length - 1]
+            doorSpaces[wall][doorSpaces[wall].length - 1].left = doorSpaces[wall][doorSpaces[wall].length -
+                    1
+                ]
                 .left - 0.5;
             alert("Door cannot be moved further right.");
             return;
@@ -5196,8 +5184,10 @@
         }
     }
     var checkLeanToWrapLeft = function(wall) {
-        if (leanTo[wall].drop == leanTo[getWallLeft(wall)].drop && leanTo[wall].cut1 == 0 && leanTo[getWallLeft(
-                wall)].cut2 == 0 && leanTo[wall].pitch == leanTo[getWallLeft(wall)].pitch && leanTo[wall].width ==
+        if (leanTo[wall].drop == leanTo[getWallLeft(wall)].drop && leanTo[wall].cut1 == 0 && leanTo[
+                getWallLeft(
+                    wall)].cut2 == 0 && leanTo[wall].pitch == leanTo[getWallLeft(wall)].pitch && leanTo[
+                wall].width ==
             leanTo[getWallLeft(wall)].width) {
             s = 'leanToWrapLeft' + wall;
             document.querySelector('#' + s).disabled = false;
@@ -5213,8 +5203,10 @@
         }
     };
     var checkLeanToWrapRight = function(wall) {
-        if (leanTo[wall].drop == leanTo[getWallRight(wall)].drop && leanTo[wall].cut1 == 0 && leanTo[getWallRight(
-                wall)].cut2 == 0 && leanTo[wall].pitch == leanTo[getWallRight(wall)].pitch && leanTo[wall].width ==
+        if (leanTo[wall].drop == leanTo[getWallRight(wall)].drop && leanTo[wall].cut1 == 0 && leanTo[
+                getWallRight(
+                    wall)].cut2 == 0 && leanTo[wall].pitch == leanTo[getWallRight(wall)].pitch && leanTo[
+                wall].width ==
             leanTo[getWallRight(wall)].width) {
             s = 'leanToWrapRight' + wall;
             document.querySelector('#' + s).disabled = false;
@@ -5392,8 +5384,9 @@
         scene.gravity = new BABYLON.Vector3(0, -0.15, 0);
         scene.collisionsEnabled = true;
 
-        zoomCamera = new BABYLON.ArcRotateCamera("zoomCamera", -Math.PI / 2, Math.PI / 3, 25, new BABYLON.Vector3(0,
-            5, -8), scene);
+        zoomCamera = new BABYLON.ArcRotateCamera("zoomCamera", -Math.PI / 2, Math.PI / 3, 25, new BABYLON
+            .Vector3(0,
+                5, -8), scene);
         zoomCamera.setTarget(new BABYLON.Vector3(0, 4.5, 10));
         zoomCamera.zoomToMouseLocation = true;
         zoomCamera.applyGravity = true;
@@ -5408,8 +5401,9 @@
         uniCamera.checkCollisions = true;
         uniCamera.attachControl(canvas, false);
 
-        arcCamera = new BABYLON.ArcRotateCamera("arcCamera", -Math.PI / 2, Math.PI / 3, 25, new BABYLON.Vector3(0,
-            5, -8), scene);
+        arcCamera = new BABYLON.ArcRotateCamera("arcCamera", -Math.PI / 2, Math.PI / 3, 25, new BABYLON
+            .Vector3(0,
+                5, -8), scene);
         arcCamera.setTarget(new BABYLON.Vector3(0, 4.5, 10));
         arcCamera.applyGravity = true;
         arcCamera.ellipsoid = new BABYLON.Vector3(1, 1, 1);
@@ -5618,16 +5612,19 @@
             var meshCount = scene.meshes.length - 1;
             for (var i = meshCount; i >= 0; i--) {
                 if (scene.meshes[i].name.includes("frame_010_Plane.015")) {
-                    scene.meshes[i].material.diffuseColor = new BABYLON.Color3(trimColor[0], trimColor[
-                        1], trimColor[2]);
+                    scene.meshes[i].material.diffuseColor = new BABYLON.Color3(trimColor[0],
+                        trimColor[
+                            1], trimColor[2]);
                 }
                 if (scene.meshes[i].name.includes("frame_4x7_Plane.015")) {
-                    scene.meshes[i].material.diffuseColor = new BABYLON.Color3(trimColor[0], trimColor[
-                        1], trimColor[2]);
+                    scene.meshes[i].material.diffuseColor = new BABYLON.Color3(trimColor[0],
+                        trimColor[
+                            1], trimColor[2]);
                 }
                 if (scene.meshes[i].name.includes("frame_014_Plane.018")) {
-                    scene.meshes[i].material.diffuseColor = new BABYLON.Color3(trimColor[0], trimColor[
-                        1], trimColor[2]);
+                    scene.meshes[i].material.diffuseColor = new BABYLON.Color3(trimColor[0],
+                        trimColor[
+                            1], trimColor[2]);
                 }
             }
         });
@@ -5844,7 +5841,8 @@
                 }
 
                 for (var ws = 0; ws < numWindows; ws++) {
-                    emailText = emailText + "<p>" + walls[w].windowSpaces[ws].left + " ft from left " +
+                    emailText = emailText + "<p>" + walls[w].windowSpaces[ws].left +
+                        " ft from left " +
                         walls[w].windowSpaces[ws].top + " ft from top</p>";
                 }
             }
@@ -5878,7 +5876,8 @@
                 }
 
                 for (var d = 0; d < numDoors; d++) {
-                    emailText = emailText + "<p>" + walls[w].doorSpaces[d].door.type + " - " + walls[w]
+                    emailText = emailText + "<p>" + walls[w].doorSpaces[d].door.type + " - " +
+                        walls[w]
                         .doorSpaces[d].left + " ft from left</p>";
                 }
             }
