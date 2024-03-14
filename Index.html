@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+        <title>Babylon Template</title>
+        <style>
+            html, body {
+                overflow: hidden;
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            #renderCanvas {
+                width: 100%;
+                height: 100%;
+                touch-action: none;
+            }
+        </style>
+        <script src="https://cdn.babylonjs.com/babylon.js"></script>
+        <script src="https://cdn.babylonjs.com/loaders/babylonjs.loaders.min.js"></script>
+        <script src="https://cdn.babylonjs.com/proceduralTexturesLibrary/babylon.grassProceduralTexture.min.js"></script>
+        <script src="https://code.jquery.com/pep/0.4.3/pep.js"></script>
+    </head>
+   <body>
+    <canvas id="renderCanvas" touch-action="none"></canvas> <!-- touch-action="none" for best results from PEP -->
+    <script>
+        const canvas = document.getElementById("renderCanvas"); // Get the canvas element
+        const engine = new BABYLON.Engine(canvas, true); // Generate the BABYLON 3D engine
+
+        var createScene  = function() { // Create all scene elements in here
+            var scene = new BABYLON.Scene(engine);
+            scene.clearColor = new BABYLON.Color3(1, 0.8, 0.8);
+            
+            var camera = new BABYLON.ArcRotateCamera("Camera", 1, 0.8, 10, new BABYLON.Vector3(0, 0, 0), scene);
+            scene.activeCamera.attachControl(canvas);
+            
+            var light = new BABYLON.HemisphericLight("light", new BABYLON.Vector3(0, 1, 0), scene);
+                                  
+            var ground = BABYLON.MeshBuilder.CreateGround("ground", {width:20, height:20});
+            var grassMaterial = new BABYLON.StandardMaterial(name + "bawl", scene);
+            var grassTexture = new BABYLON.GrassProceduralTexture(name + "textbawl", 256, scene);
+            grassMaterial.ambientTexture = grassTexture;
+            ground.material = grassMaterial;
+
+            var box = BABYLON.Mesh.CreateBox("box", 1, scene);
+            box.position.y = .5;
+            box.scaling.x = 2;
+            
+            var roof = BABYLON.MeshBuilder.CreateCylinder("roof", {diameter: 1.3, height: 1.2, tessellation: 3});
+            roof.scaling.x = 0.5;
+            roof.scaling.y = 2;
+            roof.rotation.z = Math.PI / 2;
+            roof.position.y = 1.15;
+
+            //var roofMat = new BABYLON.StandardMaterial("roofMat", scene);
+            //roofMat.diffuseTexture = new BABYLON.Texture("https://assets.babylonjs.com/environments/roof.jpg", scene);
+            //roof.material = roofMat;
+
+            var metal = new BABYLON.PBRMaterial("metal", scene);
+            //metal.reflectionTexture = hdrTexture;
+            metal.microSurface = 0.96;
+            metal.reflectivityColor = new BABYLON.Color3(0.25, 0.25, 0.25);
+            metal.albedoColor = new BABYLON.Color3(0.01, 0.01, 0.01);
+            roof.material = metal;
+
+            var boxMat = new BABYLON.StandardMaterial("boxMat", scene);
+            boxMat.diffuseTexture = new BABYLON.Texture("MetalSheet/Sheet_Diffuse.tga");
+            //boxMat.diffuseTexture = new BABYLON.Texture("https://www.babylonjs-playground.com/textures/floor.png");
+            box.material = boxMat;  
+            
+            //BABYLON.SceneLoader.Append("./", "Plane_Wood/PlaneWood.obj", scene, function (scene) {
+            //});
+
+            //BABYLON.SceneLoader.Append("./", "MetalSheet/MetalSheet.obj", scene, function (scene) {
+            //});
+            
+            return scene;
+         };
+
+        
+        const scene = createScene(); //Call the createScene function
+        
+        // Register a render loop to repeatedly render the scene
+        engine.runRenderLoop(function () {
+                scene.render();
+        });
+        
+        // Watch for browser/canvas resize events
+        window.addEventListener("resize", function () {
+                engine.resize();
+        });
+    </script>
+   </body>
+</html>

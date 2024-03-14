@@ -1,0 +1,46 @@
+                ITALIANO
+Grazie per aver scelto questo modello 3d. 
+-Il modello 3d è utilizzabile all'interno di qualunque creazione,purchè
+vengano rispettati alcuni requisiti 
+1°: E' severamente vietato affermare che il modello 3d da me realizzato (da te scaricato) 
+è frutto del tuo lavoro e della tua fatica. 
+2°: Ogni qualvolta utilizzi un modello 3d da me creato, è importante 
+inserire (scritto o parlato) il mio nome: §DIONYMAXART§
+-Nel momento in cui importi il modello 3d all'interno del programma di 
+modellazione/animazione 3d da te preferito, la texture dovrebbe essere applicata
+automaticamente sul modello 3d. 
+-Nel caso in cui ciò non avvenga, dovrai applicare 
+la texture manualmente, importando la texture map in formato .PNG sul modello 3d
+(a seconda del programma utilizzato il procedimento potrebbe variare)
+-La texture map è già presente all'interno del pacchetto .RAR,se preferisci puoi
+modificarla usando un qualunque programma di editing immagini 
+(photoshop,gimp,paint,etc...) facendo attenzione però a lasciare inalterate le forme
+da me create (in modo che la texture combaci perfettamente sul modello 3d)
+-Se si dovessero presentare problemi,non esitare a contattarmi attraverso questi link 
+"1°: "Profilo Turbosquid" ->  https://www.turbosquid.com/Search/Artists/DionyMaxArt
+"2°: "Profilo Facebook" -> https://www.facebook.com/massimiliano.dionisi.98
+"3°: "Profilo Twitter" -> https://twitter.com/Massimi19210579
+               
+                 ENGLISH
+Thank you for choosing this 3d model.
+-The 3d model can be used within any creation, as long as it is
+some requirements are met
+1st: It is strictly forbidden to state that the 3D model I have made 
+(which you have downloaded)
+it is the result of your work and your effort.
+2nd: Whenever you use a 3D model created by me, it's important to
+insert (written or spoken) my name: §DIONYMAXART§
+- The moment you import the 3d model into the program
+3d modeling / animation of your choice, the texture should be applied
+automatically on the 3d model.
+-In case this does not happen, you will have to apply
+the texture manually, importing the texture map in .PNG format on the 3d model
+(depending by the program used, the procedure may vary)
+-The texture map is already present in the .RAR package, if you prefer you can
+modify it using any image editing program
+(photoshop, gimp, paint, etc ...) but be careful to leave the shapes created by me  
+unaltered (so that the texture fits perfectly on the 3d model)
+-If you have problems, do not hesitate to contact me through these links
+"1st: "Turbosquid Profile" -> https://www.turbosquid.com/Search/Artists/DionyMaxArt
+"2nd: "Facebook Profile" -> https://www.facebook.com/massimiliano.dionisi.98
+"3rd: "Twitter Profile" -> https://twitter.com/Massimi19210579

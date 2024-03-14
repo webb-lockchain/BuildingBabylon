@@ -1,0 +1,7 @@
+3D MODEL NAME / NOME MODELLO 3D =>"Plane / Piano"
+Verts-Vertici: 4
+Faces-Facce: 1
+Tris-Triangoli: 2
+Objects-Oggetti: 2
+Lamps-Luci: 0
+MEM => 7.32M(4.11M)

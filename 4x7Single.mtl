@@ -1,0 +1,33 @@
+# Blender MTL File: '3x7Single.blend'
+# Material Count: 3
+
+newmtl door_single_mat
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+
+newmtl frame_mat
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.984883 0.984883 0.984883
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+
+newmtl props_mat
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 3
+map_Ns /Volumes/CEI External/Dropbox/InternetImagineering/Steel Building Designer/doors_blend/props_Roughness.tga
