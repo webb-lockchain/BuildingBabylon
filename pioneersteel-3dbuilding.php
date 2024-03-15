@@ -2351,11 +2351,11 @@
 
                             break;
                         case "4x7 Single Door":
-                            place4x7EDoorModel(d, doors[d][ds], doorSpaces[d][ds]);
+                            place4x7EDoorModel(d, doors[d][ds], doorSpaces[d][ds], doorColor);
 
                             break;
                         case "6x7 Double Door":
-                            place6x7EDoorModel(d, doors[d][ds], doorSpaces[d][ds]);
+                            place6x7EDoorModel(d, doors[d][ds], doorSpaces[d][ds], doorColor);
 
                             break;
                         case "8x8 Sectional": //scaling = new BABYLON.Vector3(2.2575, 2.728, 2);
@@ -3009,8 +3009,8 @@
                     meshes[i].visibility = 0;
                     meshes[i].scaling = new BABYLON.Vector3(1, 3.35, 3);
                     if (meshes[i].name == "frame_010_Plane.015") {
-                        // meshes[i].material.diffuseColor = new BABYLON.Color3(trimColor[0], trimColor[1],
-                        //     trimColor[2]);
+                        meshes[i].material.diffuseColor = new BABYLON.Color3(trimColor[0], trimColor[1],
+                            trimColor[2]);
                     }
                     if (meshes[i].name == meshes[i].id == "door_010_Cylinder.003") {
                         meshes[i].material.diffuseColor = new BABYLON.Color3(0.95, 0.95, 0.95);
@@ -3183,10 +3183,7 @@
         for (var i = 0; i < meshCount; i++) {
             if (door3x7MeshNames.includes(scene.meshes[i].name) == true) {
                 var mesh2 = scene.meshes[i].clone(scene.meshes[i].name + i);
-                if (scene.meshes[i].name == "handle_010_Cylinder.016") {
-                    mesh2.material = new BABYLON.StandardMaterial("", scene);
-                }
-                doorMeshes.push(scene.meshes[i].name + i)
+
                 switch (wall) {
                     case 0: {
                         mesh2.rotation.y = 1.5708;
@@ -3220,11 +3217,19 @@
                 }
                 mesh2.material.diffuseColor = new BABYLON.Color3(parseFloat(doorColor[0]), parseFloat(
                     doorColor[1]), parseFloat(doorColor[2]));
+                if (scene.meshes[i].name == "handle_010_Cylinder.016") {
+                    mesh2.material = new BABYLON.StandardMaterial("", scene);
+                }
+                if (scene.meshes[i].name == "frame_010_Plane.015") {
+                    scene.meshes[i].material.diffuseColor = new BABYLON.Color3(trimColor[0], trimColor[1],
+                        trimColor[2]);
+                }
+                doorMeshes.push(scene.meshes[i].name + i);
             }
         }
     };
 
-    var place4x7EDoorModel = function(wall, door, doorSpace) {
+    var place4x7EDoorModel = function(wall, door, doorSpace, doorColor) {
         var meshCount = scene.meshes.length;
         for (var i = 0; i < meshCount; i++) {
 
@@ -3266,11 +3271,22 @@
                         break;
                     }
                 }
+                mesh2.material.diffuseColor = new BABYLON.Color3(parseFloat(doorColor[0]), parseFloat(
+                    doorColor[1]), parseFloat(doorColor[2]));
+                // console.log(scene.meshes[i].name);
+                if (scene.meshes[i].name == "handle_4x7_Cylinder.016") {
+                    mesh2.material = new BABYLON.StandardMaterial("", scene);
+                }
+                if (scene.meshes[i].name == "frame_4x7_Plane.015") {
+                    scene.meshes[i].material.diffuseColor = new BABYLON.Color3(trimColor[0], trimColor[1],
+                        trimColor[2]);
+                }
+                doorMeshes.push(scene.meshes[i].name + i);
             }
         }
     };
 
-    var place6x7EDoorModel = function(wall, door, doorSpace) {
+    var place6x7EDoorModel = function(wall, door, doorSpace, doorColor) {
         //console.log("Place 6x7E Door Model");
         var meshCount = scene.meshes.length;
         for (var i = 0; i < meshCount; i++) {
@@ -3299,6 +3315,7 @@
                         mesh2.position.x = doorSpace.left - (width / 2) + 3;
                         mesh2.position.z = 4.7;
                         mesh2.visibility = 1;
+                        console.log(scene.meshes[i].name);
                         break;
                     }
                     case 1: {
@@ -3322,6 +3339,16 @@
                         break;
                     }
                 }
+                mesh2.material.diffuseColor = new BABYLON.Color3(parseFloat(doorColor[0]), parseFloat(
+                    doorColor[1]), parseFloat(doorColor[2]));
+                if (scene.meshes[i].name == "handle_A_014_Cylinder.030") {
+                    mesh2.material = new BABYLON.StandardMaterial("", scene);
+                }
+                if (scene.meshes[i].name == "floor_plate_double_014_Cube.031") {
+                    scene.meshes[i].material.diffuseColor = new BABYLON.Color3(trimColor[0], trimColor[1],
+                        trimColor[2]);
+                }
+                doorMeshes.push(scene.meshes[i].name + i);
             }
         }
     };
@@ -3330,7 +3357,6 @@
         var meshCount = scene.meshes.length;
         var mesh2 = null;
         var meshes = [];
-        alert("rrrrrrrrrrrrrrrrrrr")
         for (var i = 0; i < meshCount; i++) {
             if (scene.meshes[i].name == 'garage_door_mechanism_Cube.001' || scene.meshes[i].name ==
                 'garage_door_Cube' || scene.meshes[i].name == "frame_014_Plane.018") {
@@ -3365,6 +3391,12 @@
                             break;
                         }
                     }
+                    mesh2.material.diffuseColor = new BABYLON.Color3(parseFloat(doorColor[0]), parseFloat(
+                        doorColor[1]), parseFloat(doorColor[2]));
+                    mesh2.material = new BABYLON.StandardMaterial("", scene);
+                    scene.meshes[i].material.diffuseColor = new BABYLON.Color3(trimColor[0], trimColor[1],
+                        trimColor[2]);
+                    doorMeshes.push(scene.meshes[i].name + i);
                 } else {
                     meshes.push(scene.meshes[i].clone('SectionalDoor' + d.type + 1));
                     doorMeshes.push('SectionalDoor' + d.type + 1)
@@ -3395,6 +3427,7 @@
                             break;
                         }
                     }
+
                 }
             }
         }
