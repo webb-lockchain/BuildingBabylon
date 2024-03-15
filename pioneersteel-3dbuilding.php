@@ -910,7 +910,6 @@
         house = buildWall3(walls);
         return house;
     }
-
     var buildWall0 = function(walls) {
 
         roofHeight = (roofPitch * 0.83333);
@@ -940,15 +939,17 @@
             //console.log(wSpace);
             holes.push(wSpace);
         }
-        console.log(holes);
+
         for (var ii = 0; ii < doorSpaces[0].length; ii++) {
             var ds = doorSpaces[0][ii]
+            //console.log(ds);
             var dSpace = [
                 new BABYLON.Vector3(ds.left + walls[0].corner.x, 0, 0),
                 new BABYLON.Vector3(ds.left + walls[0].corner.x, 0, ds.door.height),
                 new BABYLON.Vector3(ds.left + walls[0].corner.x + ds.door.width, 0, ds.door.height),
                 new BABYLON.Vector3(ds.left + walls[0].corner.x + ds.door.width, 0, 0)
             ];
+            //console.log(dSpace);
             holes.push(dSpace);
         }
 
@@ -957,16 +958,6 @@
             holes: holes,
             sideOrientation: BABYLON.Mesh.DOUBLESIDE
         });
-        console.log(holes);
-
-
-
-
-        var redMaterial = new BABYLON.StandardMaterial("redMaterial", scene);
-        redMaterial.diffuseColor = new BABYLON.Color3(1, 0, 0); // Set color to red
-
-
-
 
         polygon.rotation.x = 4.71239;
         polygon.material = new BABYLON.StandardMaterial("", scene);
@@ -980,8 +971,9 @@
         polygon1.material = new BABYLON.StandardMaterial("", scene);
         polygon1.material.bumpTexture = new BABYLON.Texture("wall_panel_wide.png", scene);
         polygon1.material.invertNormalMapX = true;
-        polygon1.material.diffuseColor = new BABYLON.Color3(1, 0, 0);
+        polygon1.material.diffuseColor = new BABYLON.Color3(1, 1, 1);
         wallMeshes.push(polygon1);
+
         return polygon;
     }
 
@@ -1094,7 +1086,7 @@
                 new BABYLON.Vector3(ds.left + walls[0].corner.x + ds.door.width, 0, ds.door.height),
                 new BABYLON.Vector3(ds.left + walls[0].corner.x + ds.door.width, 0, 0)
             ];
-            console.log(dSpace);
+            //console.log(dSpace);
             holes.push(dSpace);
         }
 
@@ -1103,16 +1095,14 @@
             holes: holes,
             sideOrientation: BABYLON.Mesh.DOUBLESIDE
         });
-        console.log(holes)
+
         polygon.rotation.x = 4.71239;
         polygon.rotation.y = 3.14159;
         polygon.position.z = length;
         polygon.material = new BABYLON.StandardMaterial("", scene);
         polygon.material.bumpTexture = new BABYLON.Texture("wall_panel_wide.png", scene);
         polygon.material.invertNormalMapX = true;
-        polygon.material.diffuseColor = new BABYLON.Color3(1, 0, 0);
-        polygon.material.emissiveColor = new BABYLON.Color3(1, 0, 0);
-        polygon.material.ambientColor = new BABYLON.Color3(1, 0, 0);
+        polygon.material.diffuseColor = new BABYLON.Color3(wallColor[0], wallColor[1], wallColor[2]);
         wallMeshes.push(polygon);
 
         polygon1 = polygon.clone();
@@ -1122,8 +1112,6 @@
         polygon1.material.invertNormalMapX = true;
         polygon1.material.diffuseColor = new BABYLON.Color3(1, 1, 1);
         wallMeshes.push(polygon1);
-
-
 
         return polygon;
     }
@@ -1196,7 +1184,6 @@
 
         return polygon;
     }
-
 
     var OLDbuildFromPlan = function(walls, ply, height, options, scene, customMesh) {
 
@@ -2359,132 +2346,132 @@
                     //if (doors[d][ds].width == 3 && doors[d][ds].height == 7)
                     //{	place3x7DoorModel(d, doorSpaces[d][ds]);	}
                     switch (doors[d][ds].type) {
-                        case "3x7 Single Door": {
-                            place3x7EDoorModel(d, doors[d][ds], doorSpaces[d][ds]);
-                        }
-                        break;
-                    case "4x7 Single Door": {
-                        place4x7EDoorModel(d, doors[d][ds], doorSpaces[d][ds]);
-                    }
-                    break;
-                    case "6x7 Double Door": {
-                        place6x7EDoorModel(d, doors[d][ds], doorSpaces[d][ds]);
-                    }
-                    break;
-                    case "8x8 Sectional": { //scaling = new BABYLON.Vector3(2.2575, 2.728, 2);
-                        scaling = new BABYLON.Vector3(2.175, 2.7, 2);
-                        frameScaling = new BABYLON.Vector3(2, 3.85, 4.3);
-                        placeSectionalDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
-                    }
-                    break;
-                    case "8x10 Sectional": { //scaling = new BABYLON.Vector3(2.2575, 3.4, 2);
-                        scaling = new BABYLON.Vector3(2.175, 3.375, 2);
-                        frameScaling = new BABYLON.Vector3(2, 4.8125, 4.3);
-                        placeSectionalDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
-                    }
-                    break;
-                    case "10x8 Sectional": { //scaling = new BABYLON.Vector3(2.825, 2.728, 2);
-                        scaling = new BABYLON.Vector3(2.71875, 2.7, 2);
-                        frameScaling = new BABYLON.Vector3(2, 3.85, 5.375);
-                        placeSectionalDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
-                    }
-                    break;
-                    case "10x10 Sectional": { //scaling = new BABYLON.Vector3(2.825, 3.4, 2);
-                        scaling = new BABYLON.Vector3(2.71875, 3.375, 2);
-                        frameScaling = new BABYLON.Vector3(2, 4.8125, 5.375);
-                        placeSectionalDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
-                    }
-                    break;
-                    case "12x8 Sectional": { //scaling = new BABYLON.Vector3(3.4, 2.728, 2);
-                        scaling = new BABYLON.Vector3(3.375, 2.7, 2);
-                        frameScaling = new BABYLON.Vector3(2, 3.85, 6.45);
-                        placeSectionalDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
-                    }
-                    break;
-                    case "8x8 Roll Up": { //scaling = new BABYLON.Vector3(0.0264, 0.0308, 0.05);
-                        scaling = new BABYLON.Vector3(0.025175, 0.0308, 0.05);
-                        frameScaling = new BABYLON.Vector3(2, 3.85, 4.3);
-                        placeRollupDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
-                    }
-                    break;
-                    case "8x10 Roll Up": { //scaling = new BABYLON.Vector3(0.0264, 0.0385, 0.05);
-                        scaling = new BABYLON.Vector3(0.025175, 0.0385, 0.05);
-                        frameScaling = new BABYLON.Vector3(2, 4.8125, 4.3);
-                        placeRollupDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
-                    }
-                    break;
-                    case "10x8 Roll Up": { //scaling = new BABYLON.Vector3(0.033, 0.0308, 0.05);
-                        scaling = new BABYLON.Vector3(0.03146875, 0.0308, 0.05);
-                        frameScaling = new BABYLON.Vector3(2, 3.85, 5.375);
-                        placeRollupDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
-                    }
-                    break;
-                    case "10x10 Roll Up": { //scaling = new BABYLON.Vector3(0.033, 0.0385, 0.05);
-                        scaling = new BABYLON.Vector3(0.03146875, 0.0385, 0.05);
-                        frameScaling = new BABYLON.Vector3(2, 4.8125, 5.375);
-                        placeRollupDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
-                    }
-                    break;
-                    case "10x12 Roll Up": { //scaling = new BABYLON.Vector3(0.033, 0.046, 0.05);
-                        scaling = new BABYLON.Vector3(0.03146875, 0.046, 0.05);
-                        frameScaling = new BABYLON.Vector3(2, 5.79, 5.375);
-                        placeRollupDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
-                    }
-                    break;
-                    case "10x14 Roll Up": { //scaling = new BABYLON.Vector3(0.033, 0.0535, 0.05);
-                        scaling = new BABYLON.Vector3(0.03146875, 0.0535, 0.05);
-                        frameScaling = new BABYLON.Vector3(2, 6.735, 5.375);
-                        placeRollupDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
-                    }
-                    break;
-                    case "12x8 Roll Up": { //scaling = new BABYLON.Vector3(0.0395, 0.0308, 0.05);
-                        scaling = new BABYLON.Vector3(0.037667, 0.0308, 0.05);
-                        frameScaling = new BABYLON.Vector3(2, 3.85, 6.45);
-                        placeRollupDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
-                    }
-                    break;
-                    case "12x10 Roll Up": { //scaling = new BABYLON.Vector3(0.0395, 0.0385, 0.05);
-                        scaling = new BABYLON.Vector3(0.037667, 0.0385, 0.05);
-                        frameScaling = new BABYLON.Vector3(2, 4.8125, 6.45);
-                        placeRollupDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
-                    }
-                    break;
-                    case "12x12 Roll Up": { //scaling = new BABYLON.Vector3(0.0395, 0.046, 0.05);
-                        scaling = new BABYLON.Vector3(0.037667, 0.046, 0.05);
-                        frameScaling = new BABYLON.Vector3(2, 5.79, 6.45);
-                        placeRollupDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
-                    }
-                    break;
-                    case "12x14 Roll Up": { //scaling = new BABYLON.Vector3(0.0395, 0.0535, 0.05);
-                        scaling = new BABYLON.Vector3(0.037667, 0.0535, 0.05);
-                        frameScaling = new BABYLON.Vector3(2, 6.735, 6.45);
-                        placeRollupDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
-                    }
-                    break;
-                    case "14x8 Roll Up": { //scaling = new BABYLON.Vector3(0.04625, 0.0311, 0.05);
-                        scaling = new BABYLON.Vector3(0.044104, 0.0311, 0.05);
-                        frameScaling = new BABYLON.Vector3(2, 3.85, 7.525);
-                        placeRollupDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
-                    }
-                    break;
-                    case "14x10 Roll Up": { //scaling = new BABYLON.Vector3(0.04625, 0.0385, 0.05);
-                        scaling = new BABYLON.Vector3(0.044104, 0.0385, 0.05);
-                        frameScaling = new BABYLON.Vector3(2, 4.8125, 7.525);
-                        placeRollupDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
-                    }
-                    break;
-                    case "14x12 Roll Up": { //scaling = new BABYLON.Vector3(0.04625, 0.046, 0.05);
-                        scaling = new BABYLON.Vector3(0.044104, 0.046, 0.05);
-                        frameScaling = new BABYLON.Vector3(2, 5.79, 7.525);
-                        placeRollupDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
-                    }
-                    break;
-                    case "14x14 Roll Up": { //scaling = new BABYLON.Vector3(0.04625, 0.0535, 0.05);
-                        scaling = new BABYLON.Vector3(0.044104, 0.0535, 0.05);
-                        frameScaling = new BABYLON.Vector3(2, 6.735, 7.525);
-                        placeRollupDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
-                    }
-                    break;
+                        case "3x7 Single Door":
+                            place3x7EDoorModel(d, doors[d][ds], doorSpaces[d][ds], doorColor);
+
+                            break;
+                        case "4x7 Single Door":
+                            place4x7EDoorModel(d, doors[d][ds], doorSpaces[d][ds]);
+
+                            break;
+                        case "6x7 Double Door":
+                            place6x7EDoorModel(d, doors[d][ds], doorSpaces[d][ds]);
+
+                            break;
+                        case "8x8 Sectional": //scaling = new BABYLON.Vector3(2.2575, 2.728, 2);
+                            scaling = new BABYLON.Vector3(2.175, 2.7, 2);
+                            frameScaling = new BABYLON.Vector3(2, 3.85, 4.3);
+                            placeSectionalDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
+
+                            break;
+                        case "8x10 Sectional": //scaling = new BABYLON.Vector3(2.2575, 3.4, 2);
+                            scaling = new BABYLON.Vector3(2.175, 3.375, 2);
+                            frameScaling = new BABYLON.Vector3(2, 4.8125, 4.3);
+                            placeSectionalDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
+
+                            break;
+                        case "10x8 Sectional": //scaling = new BABYLON.Vector3(2.825, 2.728, 2);
+                            scaling = new BABYLON.Vector3(2.71875, 2.7, 2);
+                            frameScaling = new BABYLON.Vector3(2, 3.85, 5.375);
+                            placeSectionalDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
+
+                            break;
+                        case "10x10 Sectional": //scaling = new BABYLON.Vector3(2.825, 3.4, 2);
+                            scaling = new BABYLON.Vector3(2.71875, 3.375, 2);
+                            frameScaling = new BABYLON.Vector3(2, 4.8125, 5.375);
+                            placeSectionalDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
+
+                            break;
+                        case "12x8 Sectional": //scaling = new BABYLON.Vector3(3.4, 2.728, 2);
+                            scaling = new BABYLON.Vector3(3.375, 2.7, 2);
+                            frameScaling = new BABYLON.Vector3(2, 3.85, 6.45);
+                            placeSectionalDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
+
+                            break;
+                        case "8x8 Roll Up": //scaling = new BABYLON.Vector3(0.0264, 0.0308, 0.05);
+                            scaling = new BABYLON.Vector3(0.025175, 0.0308, 0.05);
+                            frameScaling = new BABYLON.Vector3(2, 3.85, 4.3);
+                            placeRollupDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
+
+                            break;
+                        case "8x10 Roll Up": //scaling = new BABYLON.Vector3(0.0264, 0.0385, 0.05);
+                            scaling = new BABYLON.Vector3(0.025175, 0.0385, 0.05);
+                            frameScaling = new BABYLON.Vector3(2, 4.8125, 4.3);
+                            placeRollupDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
+
+                            break;
+                        case "10x8 Roll Up": //scaling = new BABYLON.Vector3(0.033, 0.0308, 0.05);
+                            scaling = new BABYLON.Vector3(0.03146875, 0.0308, 0.05);
+                            frameScaling = new BABYLON.Vector3(2, 3.85, 5.375);
+                            placeRollupDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
+
+                            break;
+                        case "10x10 Roll Up": //scaling = new BABYLON.Vector3(0.033, 0.0385, 0.05);
+                            scaling = new BABYLON.Vector3(0.03146875, 0.0385, 0.05);
+                            frameScaling = new BABYLON.Vector3(2, 4.8125, 5.375);
+                            placeRollupDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
+
+                            break;
+                        case "10x12 Roll Up": //scaling = new BABYLON.Vector3(0.033, 0.046, 0.05);
+                            scaling = new BABYLON.Vector3(0.03146875, 0.046, 0.05);
+                            frameScaling = new BABYLON.Vector3(2, 5.79, 5.375);
+                            placeRollupDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
+
+                            break;
+                        case "10x14 Roll Up": //scaling = new BABYLON.Vector3(0.033, 0.0535, 0.05);
+                            scaling = new BABYLON.Vector3(0.03146875, 0.0535, 0.05);
+                            frameScaling = new BABYLON.Vector3(2, 6.735, 5.375);
+                            placeRollupDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
+
+                            break;
+                        case "12x8 Roll Up": //scaling = new BABYLON.Vector3(0.0395, 0.0308, 0.05);
+                            scaling = new BABYLON.Vector3(0.037667, 0.0308, 0.05);
+                            frameScaling = new BABYLON.Vector3(2, 3.85, 6.45);
+                            placeRollupDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
+
+                            break;
+                        case "12x10 Roll Up": //scaling = new BABYLON.Vector3(0.0395, 0.0385, 0.05);
+                            scaling = new BABYLON.Vector3(0.037667, 0.0385, 0.05);
+                            frameScaling = new BABYLON.Vector3(2, 4.8125, 6.45);
+                            placeRollupDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
+
+                            break;
+                        case "12x12 Roll Up": //scaling = new BABYLON.Vector3(0.0395, 0.046, 0.05);
+                            scaling = new BABYLON.Vector3(0.037667, 0.046, 0.05);
+                            frameScaling = new BABYLON.Vector3(2, 5.79, 6.45);
+                            placeRollupDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
+
+                            break;
+                        case "12x14 Roll Up": //scaling = new BABYLON.Vector3(0.0395, 0.0535, 0.05);
+                            scaling = new BABYLON.Vector3(0.037667, 0.0535, 0.05);
+                            frameScaling = new BABYLON.Vector3(2, 6.735, 6.45);
+                            placeRollupDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
+
+                            break;
+                        case "14x8 Roll Up": //scaling = new BABYLON.Vector3(0.04625, 0.0311, 0.05);
+                            scaling = new BABYLON.Vector3(0.044104, 0.0311, 0.05);
+                            frameScaling = new BABYLON.Vector3(2, 3.85, 7.525);
+                            placeRollupDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
+
+                            break;
+                        case "14x10 Roll Up": //scaling = new BABYLON.Vector3(0.04625, 0.0385, 0.05);
+                            scaling = new BABYLON.Vector3(0.044104, 0.0385, 0.05);
+                            frameScaling = new BABYLON.Vector3(2, 4.8125, 7.525);
+                            placeRollupDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
+
+                            break;
+                        case "14x12 Roll Up": //scaling = new BABYLON.Vector3(0.04625, 0.046, 0.05);
+                            scaling = new BABYLON.Vector3(0.044104, 0.046, 0.05);
+                            frameScaling = new BABYLON.Vector3(2, 5.79, 7.525);
+                            placeRollupDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
+
+                            break;
+                        case "14x14 Roll Up": //scaling = new BABYLON.Vector3(0.04625, 0.0535, 0.05);
+                            scaling = new BABYLON.Vector3(0.044104, 0.0535, 0.05);
+                            frameScaling = new BABYLON.Vector3(2, 6.735, 7.525);
+                            placeRollupDoorModel(d, doors[d][ds], doorSpaces[d][ds], scaling, frameScaling);
+
+                            break;
                     }
                 }
             }
@@ -3022,9 +3009,8 @@
                     meshes[i].visibility = 0;
                     meshes[i].scaling = new BABYLON.Vector3(1, 3.35, 3);
                     if (meshes[i].name == "frame_010_Plane.015") {
-                        //meshes[i].material.diffuseColor = new BABYLON.Color3(0.95,0.95,0.95);
-                        meshes[i].material.diffuseColor = new BABYLON.Color3(trimColor[0], trimColor[1],
-                            trimColor[2]);
+                        // meshes[i].material.diffuseColor = new BABYLON.Color3(trimColor[0], trimColor[1],
+                        //     trimColor[2]);
                     }
                     if (meshes[i].name == meshes[i].id == "door_010_Cylinder.003") {
                         meshes[i].material.diffuseColor = new BABYLON.Color3(0.95, 0.95, 0.95);
@@ -3192,25 +3178,22 @@
         }
     }
 
-    var place3x7EDoorModel = function(wall, door, doorSpace) { // door handle
-
+    var place3x7EDoorModel = function(wall, door, doorSpace, doorColor) { // door handle
         var meshCount = scene.meshes.length;
         for (var i = 0; i < meshCount; i++) {
-
             if (door3x7MeshNames.includes(scene.meshes[i].name) == true) {
                 var mesh2 = scene.meshes[i].clone(scene.meshes[i].name + i);
                 if (scene.meshes[i].name == "handle_010_Cylinder.016") {
                     mesh2.material = new BABYLON.StandardMaterial("", scene);
-                    mesh2.material.diffuseColor = new BABYLON.Color3(0.667, 0.675, 0.698);
                 }
                 doorMeshes.push(scene.meshes[i].name + i)
-
                 switch (wall) {
                     case 0: {
                         mesh2.rotation.y = 1.5708;
                         mesh2.position.x = doorSpace.left - (width / 2) + 2.85;
                         mesh2.position.z = 0.115;
                         mesh2.visibility = 1;
+
                         break;
                     }
                     case 1: {
@@ -3235,6 +3218,8 @@
                         break;
                     }
                 }
+                mesh2.material.diffuseColor = new BABYLON.Color3(parseFloat(doorColor[0]), parseFloat(
+                    doorColor[1]), parseFloat(doorColor[2]));
             }
         }
     };
@@ -4468,7 +4453,6 @@
                 }
             }
         } else {
-            alert("effffffffffffffffff")
             ds0 = doorSpaces[wall][doorSpaces[wall].length - 1];
             d = doors[wall][doors[wall].length - 1];
             dsLeft = ds0.left + d.width + 1;
@@ -4512,8 +4496,6 @@
                 }
             }
         }
-        alert("efgasdfasdf")
-        console.log(house)
         rebuildWalls(house);
     };
 
@@ -5623,6 +5605,13 @@
             wallColor = rgbToBabylon($('#WallColor').val());
             //console.log(wallColor);
             wallColorText = $('#WallColor option:selected').text();
+            rebuildWalls();
+            rebuildRoof();
+        });
+        $('#DoorColor').change(function() {
+            doorColor = rgbToBabylon($('#DoorColor').val());
+            //console.log(doorColor);
+            doorColorText = $('#DoorColor option:selected').text();
             rebuildWalls();
             rebuildRoof();
         });
