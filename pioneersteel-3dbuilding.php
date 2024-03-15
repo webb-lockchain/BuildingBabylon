@@ -3339,12 +3339,14 @@
                         break;
                     }
                 }
-                mesh2.material.diffuseColor = new BABYLON.Color3(parseFloat(doorColor[0]), parseFloat(
-                    doorColor[1]), parseFloat(doorColor[2]));
-                if (scene.meshes[i].name == "handle_A_014_Cylinder.030") {
-                    mesh2.material = new BABYLON.StandardMaterial("", scene);
-                }
+                // mesh2.material = new BABYLON.StandardMaterial("", scene);
+                // mesh2.material.diffuseColor = new BABYLON.Color3(parseFloat(doorColor[0]), parseFloat(
+                //     doorColor[1]), parseFloat(doorColor[2]));
+                // if (scene.meshes[i].name == "handle_A_014_Cylinder.030") {
+                //     mesh2.material = new BABYLON.StandardMaterial("", scene);
+                // }
                 if (scene.meshes[i].name == "floor_plate_double_014_Cube.031") {
+                    scene.meshes[i].material = new BABYLON.StandardMaterial("", scene);
                     scene.meshes[i].material.diffuseColor = new BABYLON.Color3(trimColor[0], trimColor[1],
                         trimColor[2]);
                 }
