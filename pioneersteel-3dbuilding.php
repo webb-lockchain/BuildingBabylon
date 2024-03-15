@@ -1123,6 +1123,8 @@
         polygon1.material.diffuseColor = new BABYLON.Color3(1, 1, 1);
         wallMeshes.push(polygon1);
 
+
+
         return polygon;
     }
 
