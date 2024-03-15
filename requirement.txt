@@ -5,7 +5,8 @@ We need some clean-up work done primarily on the modeling of the building. The i
 -Lean-to pitch needs to be set to default of 1
 -Lean-to-pitch and roof-pitch need to be separate, right now they are tied together. We need to be able to change the pitch on both independently.
 -Some lean-to’s lose the trim profile when changing the pitch (when the pitch is changed the trim goes away).
--Roof and lean-to colors/patterns look a little different - They need to be the same
+-Roof and lean-to colors/patterns look a little different 
+- They need to be the same
 -Side overhangs have a line that separates the overhang of the roof - this needs to be removed to look continuous
 -Pitch, width, and trim on some lean-to’s (right lean-to, for example, aren’t working together - it gets crazy when adjusting the size of those together)
 -Add door color options to match the existing colors for walls, etc…

@@ -940,24 +940,33 @@
             //console.log(wSpace);
             holes.push(wSpace);
         }
-
+        console.log(holes);
         for (var ii = 0; ii < doorSpaces[0].length; ii++) {
             var ds = doorSpaces[0][ii]
-            //console.log(ds);
             var dSpace = [
                 new BABYLON.Vector3(ds.left + walls[0].corner.x, 0, 0),
                 new BABYLON.Vector3(ds.left + walls[0].corner.x, 0, ds.door.height),
                 new BABYLON.Vector3(ds.left + walls[0].corner.x + ds.door.width, 0, ds.door.height),
                 new BABYLON.Vector3(ds.left + walls[0].corner.x + ds.door.width, 0, 0)
             ];
-            //console.log(dSpace);
             holes.push(dSpace);
         }
+
         const polygon = BABYLON.MeshBuilder.CreatePolygon("polygon", {
             shape: shape,
             holes: holes,
             sideOrientation: BABYLON.Mesh.DOUBLESIDE
         });
+        console.log(holes);
+
+
+
+
+        var redMaterial = new BABYLON.StandardMaterial("redMaterial", scene);
+        redMaterial.diffuseColor = new BABYLON.Color3(1, 0, 0); // Set color to red
+
+
+
 
         polygon.rotation.x = 4.71239;
         polygon.material = new BABYLON.StandardMaterial("", scene);
@@ -973,7 +982,6 @@
         polygon1.material.invertNormalMapX = true;
         polygon1.material.diffuseColor = new BABYLON.Color3(1, 0, 0);
         wallMeshes.push(polygon1);
-        console.log(polygon)
         return polygon;
     }
 
@@ -1102,7 +1110,9 @@
         polygon.material = new BABYLON.StandardMaterial("", scene);
         polygon.material.bumpTexture = new BABYLON.Texture("wall_panel_wide.png", scene);
         polygon.material.invertNormalMapX = true;
-        polygon.material.diffuseColor = new BABYLON.Color3(wallColor[0], wallColor[1], wallColor[2]);
+        polygon.material.diffuseColor = new BABYLON.Color3(1, 0, 0);
+        polygon.material.emissiveColor = new BABYLON.Color3(1, 0, 0);
+        polygon.material.ambientColor = new BABYLON.Color3(1, 0, 0);
         wallMeshes.push(polygon);
 
         polygon1 = polygon.clone();
@@ -4501,6 +4511,7 @@
             }
         }
         alert("efgasdfasdf")
+        console.log(house)
         rebuildWalls(house);
     };
 
