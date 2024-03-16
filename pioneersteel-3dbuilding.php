@@ -2205,7 +2205,8 @@
         overlapFB = ply + overhangFB;
         roofApexDataLR = [0, 0 - overhangLRFront - ply, 0, length + overhangLRBack + ply];
         roofApexDataFB = [0, 0 - ply, 0, length + ply];
-
+        console.log(roofApexDataLR)
+        console.log(roofApexDataFB)
         if (roofTop != null) {
             roofTop.dispose();
         }
@@ -2216,36 +2217,16 @@
 
         wholeRoofprint = roofprint(corners, (overlapLRFront + overlapLRBack), height - (overhangFB * 0.095 *
             roofHeight));
-        //wholeRoofprint = roofprint(corners, (overlapLRFront+overlapLRBack), height-(overhangFB*0.095*roofHeight)+((width-21)*0.05) );
-
-
         apexes = [];
 
         for (var i = 0; i < roofApexDataLR.length / 2; i++) {
             apexes.push(new BABYLON.Vector2(roofApexDataLR[2 * i], roofApexDataLR[2 * i + 1]))
         }
-
+        alert("eeeee")
         roofTop = roof(wholeRoofprint, apexes, planesLR, roofHeight, height, 5.6, roofTop, "roofTop");
         roofTop.material = new BABYLON.StandardMaterial("", scene);
-        //roofTop.material.diffuseColor = new BABYLON.Color3(roofColor[0], roofColor[1], roofColor[2]);
         roofTop.material.bumpTexture = new BABYLON.Texture("roof_panel_normal.png", scene);
-        //roofTop.material.invertNormalMapX = true;
-
-        //console.log(roofTop);
-
         wholeRoofprint = roofprintFB(corners, ply, height);
-
-        // 				apexes = [];
-
-        // 				for(var i = 0; i < roofApexDataFB.length / 2; i++) {
-        // 					apexes.push(new BABYLON.Vector2(roofApexDataFB[2 * i], roofApexDataFB[2 * i + 1]))
-        // 				}
-
-        // 				roofFB = roof(wholeRoofprint, apexes, planesFB, roofHeight, height, 5.6, roofFB, "roofFB");
-        // 				roofFB.material = new BABYLON.StandardMaterial("", scene);
-        // 				roofFB.material.bumpTexture = new BABYLON.Texture("roof_panel_fb.png", scene);
-        // 				roofFB.material.invertNormalMapX = true;
-
         if (overhangLRFront > 0 || overhangLRBack > 0) {
             buildPosts();
         } else {
@@ -4969,6 +4950,7 @@
     };
 
     var overhangFBLeft = function() {
+        alert("ccccc")
         if (overhangFB == 0) {
             alert('Overhang cannot be reduced below zero.');
             return;
@@ -4987,6 +4969,7 @@
     };
 
     var overhangFBRight = function() {
+        alert("dddd")
         if (overhangFB == 2) {
             alert('Overhang cannot exceed 2 feet.');
             return;
@@ -4997,6 +4980,7 @@
         $('#SideOverhangLabel').text(oh);
         document.querySelector('#SideOverhang').value = oh;
         overlapFB = ply + overhangFB;
+        console.log(ply, overhangFB);
         if (overhangFB > 0) {
             turnOffLeanTo(1);
             turnOffLeanTo(3);
@@ -5036,6 +5020,7 @@
     };
 
     var overhangLRBackLeft = function() {
+        alert("aaaa")
         if (overhangLRBack == 0) {
             alert('Overhang cannot be reduced below zero.');
             return;
@@ -5051,6 +5036,7 @@
     };
 
     var overhangLRBackRight = function() {
+        alert("bbb")
         if (overhangLRBack == 50) {
             alert('Overhang cannot exceed 50 feet.');
             return;
